@@ -1,4 +1,7 @@
 
+import './CartWidget.jsx';
+import ShoppingCart from './CartWidget.jsx';
+
 let styleList = {
 
     display:"flex",
@@ -15,17 +18,17 @@ function navBar () {
                 <h1>Biancaneve</h1>
                 <h2>snowsport equipment</h2>
                 <div className="shoppingCart">
-                    <img/>
+                    <ShoppingCart/>
                     <div className="shoppingElements">
 
                     </div>
                 </div>
                 <div>
                     <ul style={styleList} className="navList">
-                        <li><a href="#">inicio</a></li>
-                        <li><a href="#">catalogo</a></li>
-                        <li><a href="#">noticias</a></li>
-                        <li><a href="#">promociones</a></li>
+                        <button>inicio</button>
+                        <button>catalogo</button>
+                        <button>noticias</button>
+                        <button>promociones</button>
                     </ul>
                 </div>
 
@@ -34,3 +37,5 @@ function navBar () {
     )
 
 }
+
+export default navBar
