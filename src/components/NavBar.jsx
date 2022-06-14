@@ -11,7 +11,7 @@ let styleList = {
 
 }
 
-function navBar () {
+function NavBar () {
     return (
 
             <div style={{textAling:"center"}}>
@@ -25,10 +25,11 @@ function navBar () {
                 </div>
                 <div>
                     <ul style={styleList} className="navList">
-                        <button>inicio</button>
-                        <button>catalogo</button>
-                        <button>noticias</button>
-                        <button>promociones</button>
+                        <button><link to={'/App'}>inicio</link></button>
+                        <button><link to={'/ItemCatalogue'}>catalogo</link></button>
+                        <button><link to={'/App'}>noticias</link></button>
+                        <button><link to={'/ItemCatalogue/id'}>promociones</link></button>
+                        <button><link to={'/CartWidget'}>carrito</link></button>
                     </ul>
                 </div>
 
@@ -38,4 +39,4 @@ function navBar () {
 
 }
 
-export default navBar
+export default NavBar

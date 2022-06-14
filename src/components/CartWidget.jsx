@@ -1,3 +1,6 @@
+
+
+
 function ShoppingCart (){
 return(
    <> <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="img/shoppingCart.jpg" height={120} width={120}/></button>

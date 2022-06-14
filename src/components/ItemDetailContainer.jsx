@@ -5,9 +5,9 @@ import Details from "./itemDetails";
 
 
 function CataloguePromise (){
-    const[wait, setWait] = useState();
+    const[wait, setWait] = useState(true);
     const[element, setElement] = useState();
-    const[fail, setFail] = useState();
+    const[fail, setFail] = useState(false);
 
     useEffect(()=>{
         setWait(true);
@@ -37,12 +37,7 @@ function CataloguePromise (){
             <div>{wait && "loading..."}</div>
             <div>{fail && "lo sentimos, tuvimos un problema, intente mas tarde"}</div>
             <div>
-                {Items.map(u=><><p>{u.nombre}</p> <button id="masInfo">mas info</button></>)}
-                function person() {
-                   document.getElementById('masInfo').addEventListener('click', ()=>{
-                    Details
-                   })
-                }
+                {Items.map(u=><><p>{u.nombre}</p> <button id="masInfo" onClick={Details}>mas info</button></>)}
             </div>
         </>
     )

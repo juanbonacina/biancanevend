@@ -6,12 +6,26 @@ import "./ItemDetailContainer"
 const persons = Items
 
 function Details ({persons}){
-const [persons , setPersons] = useState()
+    const [persons , setPersons] = useState()
 
 
     useEffect(()=>{
-        if(setPersons.id === Items.id){
-            return(
+        
+        const find = new Promise((res))
+        setTimeout(()=>{
+            res('mas detalles');
+        },2000);
+
+        find
+        .then(()=>{
+            Items.find(persons.id)
+        })
+
+        .then((persons)=>{
+            setPersons (persons)
+        })
+    })
+    return(
                 <>
                     <div>
                         <img/>
@@ -23,9 +37,7 @@ const [persons , setPersons] = useState()
                         </div>
                     </div>        
                 </>
-            )
-        }  
-    })
+    )
 
 }
 
