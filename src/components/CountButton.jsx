@@ -1,23 +1,47 @@
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
+import "./CartWidget";
 
 function ItemCount  ({startPoint}) {
     const [x, setX] = useState(0);
     useEffect(()=>{
-        
-        if(x === 10){
-            
-        document.getElementById('buttonAdd').setDisable(true)       
-        }
 
-    });
+        const Add = useRef(buttonAdd)
+        Add.onClick = (()=>{
+            setX (x + 1)
+
+            if(x === 10){
+                
+            Add.setDisable(true)       
+            }   
+        });
+
+    },[x]);
     useEffect(()=>{
         
-        if(x === 0){
-            
-        document.getElementById('buttonSubtract').setDisable(true)       
-        }
+        const subtrack = useRef (buttonSubtract)
+        subtrack.onClick = (()=>{
 
-    });
+            setX (x - 1)
+            
+            if(x === 0){
+
+            subtrack.setDisable(true)       
+            }
+        });
+
+    },[x]);
+
+    useEffect(()=>{
+
+        const addShopping = useRef (addCart)
+
+        addShopping.onClick =(()=>{
+
+            ShopCart.push( x , persons.id)
+        })
+
+    })
 
 
 return(
@@ -26,22 +50,11 @@ return(
         <div style={{border: 'solid black 2px', height:'200px'}}>
             <p>Cantidad de Unidades: {x}</p>
             <br/>
-            <button id="buttonAdd"
-                onClick={()=>{
+            <button ref={buttonAdd}>+</button>
 
-                setX (x + 1);
+            <button ref={buttonSubtract} >-</button>
 
-                }}   
-            >+</button>
-
-            <button id="buttonSubtract"
-                onClick={()=>{
-
-                    setX (x - 1);
-                }}  
-            >-</button>
-
-
+            <button ref={addCart}>Add Cart</button>
 
         </div>
     </>

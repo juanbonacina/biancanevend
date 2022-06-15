@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Items from "./item";
-import "./ItemDetailContainer"
+import "./ItemDetailContainer";
+import ItemCount from "./CountButton";
 
 const persons = Items
 
@@ -34,6 +35,9 @@ function Details ({persons}){
                             <p>{persons.id}</p>
                             <p>{persons.sucursal}</p>
                             <p>{persons.genero}</p>
+                        </div>
+                        <div>
+                            <ItemCountun/>
                         </div>
                     </div>        
                 </>
