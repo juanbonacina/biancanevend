@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import "./CartWidget";
+import persons from "./itemDetails";
+
 
 function ItemCount  ({startPoint}) {
-    const [x, setX] = useState(0);
+    const [Unidades , setUnidades] = useState(0);
     useEffect(()=>{
 
         const Add = useRef(buttonAdd)
         Add.onClick = (()=>{
-            setX (x + 1)
+            setUnidades (Unidades + 1)
 
-            if(x === 10){
+            if(Unidades === 10){
                 
             Add.setDisable(true)       
             }   
         });
 
-    },[x]);
+    },[Unidades]);
     useEffect(()=>{
         
         const subtrack = useRef (buttonSubtract)
         subtrack.onClick = (()=>{
 
-            setX (x - 1)
+            setUnidades (Unidades - 1)
             
-            if(x === 0){
+            if(Unidades === 0){
 
             subtrack.setDisable(true)       
             }
         });
 
-    },[x]);
+    },[Unidades]);
 
     useEffect(()=>{
 
@@ -38,7 +40,7 @@ function ItemCount  ({startPoint}) {
 
         addShopping.onClick =(()=>{
 
-            ShopCart.push( x , persons.id)
+            ShopCart.push( Unidades , persons.id, persons.nombre)
         })
 
     })
@@ -48,7 +50,7 @@ return(
 
     <>
         <div style={{border: 'solid black 2px', height:'200px'}}>
-            <p>Cantidad de Unidades: {x}</p>
+            <p>Cantidad de Unidades: {Unidades}</p>
             <br/>
             <button ref={buttonAdd}>+</button>
 

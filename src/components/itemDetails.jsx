@@ -6,6 +6,7 @@ import ItemCount from "./CountButton";
 
 const persons = Items
 
+
 function Details ({persons}){
     const [persons , setPersons] = useState()
 
