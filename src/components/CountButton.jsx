@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import "./CartWidget";
 import persons from "./itemDetails";
+import cartContextProvider from "./FuntionContext";
+import ShoppingCart from "./CartWidget";
 
 
 function ItemCount  ({startPoint}) {
@@ -40,7 +42,9 @@ function ItemCount  ({startPoint}) {
 
         addShopping.onClick =(()=>{
 
-            ShopCart.push( Unidades , persons.id, persons.nombre)
+            ShopCart.push( Unidades , persons.id, persons.nombre);
+
+            cartContextProvider ({ShopCart, ShoppingCart});
         })
 
     })

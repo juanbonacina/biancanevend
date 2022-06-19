@@ -9,6 +9,7 @@ import ItemCount from './components/CountButton';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ShoppingCart from './components/CartWidget.jsx';
 import Promise from './components/itemcatalogue';
+import Items from './components/item';
 
 function App() {
   return (
@@ -18,8 +19,15 @@ function App() {
       <Route path='/home' element={<App/>}/>
       <Route path='/cart' element={<ShoppingCart/>}/>
       <Route path='/catalogue' element={<Promise/>}/>
+
     </Routes>
     <ItemCount startPoint={0} />
+    <div>
+      <cartContextProvider>
+        <Items/>
+        <CountButton/>
+      </cartContextProvider>
+    </div>
     </BrowserRouter>  
   );
 }
