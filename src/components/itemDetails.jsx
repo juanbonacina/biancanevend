@@ -3,13 +3,19 @@ import { useEffect } from "react";
 import Items from "./item";
 import "./ItemDetailContainer";
 import ItemCount from "./CountButton";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const persons = Items
 
 
 function Details ({persons}){
-    const [persons , setPersons] = useState()
+    const [persons , qty, setPersons] = useState()
 
+    const{justInIt, addCart, deleteUnity} = useContext(CartContext)
+    justInIt(persons.id);
+    addCart(persons,qty);
+    deleteUnity(persons, qty)
 
     useEffect(()=>{
         
@@ -24,7 +30,7 @@ function Details ({persons}){
         })
 
         .then((persons)=>{
-            setPersons (persons)
+            setPersons (persons, qty)
         })
     })
     return(

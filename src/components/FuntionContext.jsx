@@ -18,6 +18,7 @@ function cartContextProvider ({defaultvalue = [], children}){
     function addToItem(obj){
         if(isIN ( obj && obj.id )) {
             alert("this item is all redy in the cart");
+            
             return;
         }
     }

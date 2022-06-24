@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import "./CartWidget";
-import persons from "./itemDetails";
 import cartContextProvider from "./FuntionContext";
 import ShoppingCart from "./CartWidget";
+import productos from "./Products";
+import CartContext from "./CartContext";
 
 
 function ItemCount  ({startPoint}) {
@@ -37,16 +37,15 @@ function ItemCount  ({startPoint}) {
     },[Unidades]);
 
     useEffect(()=>{
-
-        const addShopping = useRef (addCart)
-
-        addShopping.onClick =(()=>{
-
-            ShopCart.push( Unidades , persons.id, persons.nombre);
-
-            cartContextProvider ({ShopCart, ShoppingCart});
-        })
-
+        function CartElements (){
+            const[Compra, setCompra] = useState ([]);
+            useEffect(()=>{
+                const buttonCart = useRef(addToCart);
+                buttonCart.onClick(()=>{
+                    setCompra(item=>[... Compra, nuevoItem])
+                })
+            })
+        }
     })
 
 
@@ -60,7 +59,7 @@ return(
 
             <button ref={buttonSubtract} >-</button>
 
-            <button ref={addCart}>Add Cart</button>
+            <button ref={addToCart}>Add Cart</button>
 
         </div>
     </>
