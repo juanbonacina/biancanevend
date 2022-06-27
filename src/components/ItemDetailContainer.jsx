@@ -5,39 +5,25 @@ import Details from "./itemDetails";
 
 
 function CataloguePromise (){
-    const[wait, setWait] = useState(true);
-    const[element, setElement] = useState();
-    const[fail, setFail] = useState(false);
-
+    const [Productos , qty, setProductos] = useState()
     useEffect(()=>{
-        setWait(true);
-        setFail(false);
-        setElement();
-
-        const search = new Promise((res, rej))
-        setTimeout (()=>{
-            res("ya pago / pagaron")
-        },2000);        
-    
-
-        search
-        .then((element)=>{
-            setElement(element)
-        })
-        .catch((fail)=>{
-            setFail(fail)
-        })
-        .finally(()=>{
-            setWait(false)
-        })
-    },[])
+        const db = getFirestore()
+        const itemCollection = collection(db, "productos")
+        getDoc(itemCollection).then((snapshot)=>{
+            if(snapshot === 0){
+                <p>No se encuentran productos, intente mas tarde</p>
+            }
+            setProductos=(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data()})));
+        });
+    },[]);
 
     return(
         <>
             <div>{wait && "loading..."}</div>
             <div>{fail && "lo sentimos, tuvimos un problema, intente mas tarde"}</div>
             <div>
-                {Items.map(u=><><p>{u.nombre}</p> <button id="masInfo" onClick={Details}>mas info</button></>)}
+                <P>{setProductos}</P>
+                
             </div>
         </>
     )

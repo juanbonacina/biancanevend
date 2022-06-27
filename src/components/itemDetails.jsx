@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "./CartContext";
 import Items from "./item";
 import "./ItemDetailContainer";
-import ItemCount from "./CountButton";
-import { useContext } from "react";
-import { CartContext } from "./CartContext";
+import {getFirestore, doc, getDoc, collection, query, where} from "firebase/firestore";
 
 const persons = Items
 
 
 function Details ({persons}){
-    const [persons , qty, setPersons] = useState()
+    const [Productos , qty, setProductos] = useState()
 
     const{justInIt, addCart, deleteUnity} = useContext(CartContext)
     justInIt(persons.id);
@@ -18,30 +16,26 @@ function Details ({persons}){
     deleteUnity(persons, qty)
 
     useEffect(()=>{
-        
-        const find = new Promise((res))
-        setTimeout(()=>{
-            res('mas detalles');
-        },2000);
-
-        find
-        .then(()=>{
-            Items.find(persons.id)
+        const db = getFirestore()
+        const query = query(
+            collection(db, "productos"),
+            where("categoria", "===", "accesorios")
+        );
+        getDoc(query).then((snapshot)=>{
+            if(snapshot === 0){
+                <p>No se encuentran productos, intente mas tarde</p>
+            }
+            setProductos=(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data()})));
         })
+    },[]);
 
-        .then((persons)=>{
-            setPersons (persons, qty)
-        })
-    })
     return(
                 <>
                     <div>
                         <img/>
                         <div>
-                            <h2>{persons.nombre}</h2>
-                            <p>{persons.id}</p>
-                            <p>{persons.sucursal}</p>
-                            <p>{persons.genero}</p>
+                            <h2>{Productos.nombre}</h2>
+                            <p>{Productos.data}</p>
                         </div>
                         <div>
                             <ItemCountun/>
