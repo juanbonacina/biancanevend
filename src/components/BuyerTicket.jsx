@@ -4,7 +4,7 @@ import { CartContext } from "./CartContext";
 import {addDoc, collection, getFirestore} from "firebase/firestore"
 
 
-function persons (){
+function Persons (){
     const [Name,setName] = useState()
     const [Phone,setPhone] = useState()
     const [Email,setEmail] = useState();
@@ -38,7 +38,7 @@ function persons (){
 }
 
 
-
+export default Persons;
 
 
 

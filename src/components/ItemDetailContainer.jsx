@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./item";
-import Items from "./item";
-import Details from "./itemDetails";
-
+import { useEffect, useState } from "react";
+import {getFirestore, collection, getDoc} from "firebase/firestore"
 
 function CataloguePromise (){
-    const [Productos , qty, setProductos] = useState()
+    const [Productos, setProductos] = useState()
     useEffect(()=>{
         const db = getFirestore()
         const itemCollection = collection(db, "productos")
@@ -19,10 +16,10 @@ function CataloguePromise (){
 
     return(
         <>
-            <div>{wait && "loading..."}</div>
-            <div>{fail && "lo sentimos, tuvimos un problema, intente mas tarde"}</div>
             <div>
-                <P>{setProductos}</P>
+                <div>
+                    {getDoc}
+                </div>
                 
             </div>
         </>

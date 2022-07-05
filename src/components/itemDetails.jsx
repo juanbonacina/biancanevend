@@ -1,44 +1,53 @@
+import { collection, getDoc, getFirestore, where } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
-import Items from "./item";
+import { itemCount } from "./CountButton";
 import "./ItemDetailContainer";
-import {getFirestore, doc, getDoc, collection, query, where} from "firebase/firestore";
-
-const persons = Items
 
 
-function Details ({persons}){
-    const [Productos , qty, setProductos] = useState()
+
+function Details (){
+    const [Producto , setProducto] = useState()
+    const [Qty, setQty] = useState()
+    const unidades = Qty
+    const item = Producto
+
 
     const{justInIt, addCart, deleteUnity} = useContext(CartContext)
-    justInIt(persons.id);
-    addCart(persons,qty);
-    deleteUnity(persons, qty)
+    justInIt(item.id);
+    addCart(item, unidades);
+    deleteUnity(item, unidades);
+    itemCount(Qty)
 
     useEffect(()=>{
         const db = getFirestore()
         const query = query(
             collection(db, "productos"),
-            where("categoria", "===", "accesorios")
+            where("name", "===", "campera snowboard")
         );
         getDoc(query).then((snapshot)=>{
             if(snapshot === 0){
                 <p>No se encuentran productos, intente mas tarde</p>
             }
-            setProductos=(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data()})));
+            setProducto=(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data()})));
         })
     },[]);
+    
+       
 
     return(
                 <>
                     <div>
                         <img/>
                         <div>
-                            <h2>{Productos.nombre}</h2>
-                            <p>{Productos.data}</p>
+                            <h2>{Producto.nombre}</h2>
+                            <p>{Producto.data}</p>
                         </div>
                         <div>
-                            <ItemCountun/>
+                            {itemCount((e)=>setQty(e.target.value))}
+                        </div>
+                        <div>
+                            <button onClick={addCart} >Add to Cart</button>
                         </div>
                     </div>        
                 </>

@@ -1,22 +1,23 @@
 /*import logo from './logo.svg';*/
+import { initializeApp } from "firebase/app";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './components/CartWidget.jsx';
 import ShoppingCart from './components/CartWidget.jsx';
 import './components/CountButton';
 import ItemCount from './components/CountButton';
-import Items from './components/item';
-import Promise from './components/itemcatalogue';
 import './components/ItemList.jsx';
 import ItemsList from './components/ItemList.jsx';
 import './components/NavBar.jsx';
-import { initializeApp } from "firebase/app";
-
+import NavBarr from "./components/NavBar.jsx";
+import NavBar from "./components/NavBar.jsx";
+import "./components/ItemDetailContainer";
+import CataloguePromise from "./components/ItemDetailContainer";
 
 
 
 function App() {
-  
+/*
   const firebaseConfig = {
     apiKey: "AIzaSyBEukEJjcU_80hwSr4DF5cMoJhtvQ3Jm3c",
     authDomain: "biancaneve-ecommerce.firebaseapp.com",
@@ -33,25 +34,38 @@ function App() {
 
 
   return (
+    
     <BrowserRouter>
-    <NavBar/>
-    <Routes>
-      <Route path='/home' element={<App/>}/>
-      <Route path='/cart' element={<ShoppingCart/>}/>
-      <Route path='/catalogue' element={<Promise/>}/>
+      <NavBar/>
+      <Routes>
 
-    </Routes>
-    <ItemCount startPoint={0} />
-    <div>
-      <cartContextProvider>
-        <Items/>
-        <CountButton/>
-      </cartContextProvider>
+      </Routes>
+    </BrowserRouter>
+    <>
+      <NavBar/>
+    </>
+  );*/
+  return(
+    <div className="App">
+    <header className="App-header">
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+    </header>
+    <body>
+    <h1>Biancaneve snowsport equipment</h1>
+    <p>hola</p>  
+    </body>
     </div>
-    </BrowserRouter>  
-  );
+  )
 }
-
-<ItemsList/>
 
 export default App;

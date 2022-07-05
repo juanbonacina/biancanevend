@@ -1,65 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { useRef } from "react";
-import cartContextProvider from "./FuntionContext";
-import ShoppingCart from "./CartWidget";
-import productos from "./Products";
-import CartContext from "./CartContext";
+import { useEffect, useRef, useState } from "react";
 
 
 function ItemCount  ({startPoint}) {
-    const [Unidades , setUnidades] = useState(0);
-    useEffect(()=>{
+    const [Qty , setQty] = useState(0);
+    const addQty = (()=>{
 
-        const Add = useRef(buttonAdd)
-        Add.onClick = (()=>{
-            setUnidades (Unidades + 1)
+        setQty (Qty + 1)
 
-            if(Unidades === 10){
-                
-            Add.setDisable(true)       
-            }   
-        });
+         if(Qty === 10){
+           return(
+           <button disable ={true}>+</button>
+           )     
+                   
+        }   
 
-    },[Unidades]);
-    useEffect(()=>{
-        
-        const subtrack = useRef (buttonSubtract)
-        subtrack.onClick = (()=>{
+    },[Qty])
 
-            setUnidades (Unidades - 1)
+    const deleteQty = (()=>{
+    
+     setQty (Qty - 1)
             
-            if(Unidades === 0){
+    if(Qty === 0){
+        return(
+           <button disable ={true}>-</button>
+        )
+               
+    }
+        
 
-            subtrack.setDisable(true)       
-            }
-        });
-
-    },[Unidades]);
-
-    useEffect(()=>{
-        function CartElements (){
-            const[Compra, setCompra] = useState ([]);
-            useEffect(()=>{
-                const buttonCart = useRef(addToCart);
-                buttonCart.onClick(()=>{
-                    setCompra(item=>[... Compra, nuevoItem])
-                })
-            })
-        }
-    })
+    },[Qty]);
 
 
 return(
 
     <>
         <div style={{border: 'solid black 2px', height:'200px'}}>
-            <p>Cantidad de Unidades: {Unidades}</p>
+            <p>Cantidad de Unidades: {Qty}</p>
             <br/>
-            <button ref={buttonAdd}>+</button>
+            <button onClick={addQty}>+</button>
 
-            <button ref={buttonSubtract} >-</button>
-
-            <button ref={addToCart}>Add Cart</button>
+            <button onClick={deleteQty}>-</button>
 
         </div>
     </>

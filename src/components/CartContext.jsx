@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { createContext } from "react";
-import cartContextProvider from "./FuntionContext";
+
 
 export const CartContext = createContext();
 
@@ -14,16 +14,16 @@ const CartProvider = (children)=>{
         return Cart.some(x=> x.id == id)
     }
 
-    const addCart = (item, qty) => {
+    const addCart = (item, unidades) => {
         const newItem = {
             ...item,
-            qty
+            unidades
         }
         if (justInIt(newItem.id)){
             const findItem = Cart.find(x => x.id == newItem.id) 
             const itemIndex = Cart.indexOf(findItem)
             const auxArray  = [...Cart];
-            auxArray [itemIndex].qty += qty
+            auxArray [itemIndex].unidades += unidades
             setCart(auxArray)
         }
         else{
@@ -31,16 +31,16 @@ const CartProvider = (children)=>{
         }
     };
 
-    const deleteUnity = (item, qty) => {
+    const deleteUnity = (item, unidades) => {
         const newItem = {
             ...item,
-            qty
+            unidades
         }
         if (justInIt(newItem.id)){
             const findItem = Cart.find(x => x.id == newItem.id) 
             const itemIndex = Cart.indexOf(findItem)
             const auxArray  = [...Cart];
-            auxArray [itemIndex].qty -= qty
+            auxArray [itemIndex].unidades -= unidades
             setCart(auxArray)
         }
         else{
@@ -54,15 +54,15 @@ const CartProvider = (children)=>{
     };
 
     const deleteItem = () => {
-        return Cart.filter(x => x.id !== id)
+        return Cart.filter(x => x.id !== Cart.id)
     };
 
     const itemUnities = () => {
-        return Cart.reduce ((acc, x)=>acc += x.qty, 0)
+        return Cart.reduce ((acc, x)=>acc += x.unidades, 0)
     };
 
     const itemPrice = () => {
-        return Cart.reduce((acc,x) => acc += x.qty * x.price, 0)
+        return Cart.reduce((acc,x) => acc += x.unidades * x.price, 0)
     };
 
      

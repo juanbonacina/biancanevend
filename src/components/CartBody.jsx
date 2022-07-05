@@ -1,13 +1,34 @@
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
-import {persons} from "./Persons"
-
-
 
 function BodyCart (){
 
-    const{itemUnities, deleteItem,itemPrice, Cart, deleteUnity} = useContext(CartContext)
-    const user = persons
+    const{itemUnities, deleteItem, itemPrice, Cart, deleteUnity, emptyCart} = useContext(CartContext)
+
+    function CartBody (){
+        
+          if(emptyCart){
+                return(
+                <>
+                <h2>El carrito esta vacio</h2>
+                <button>Ir a Catalogo</button>
+                </>
+            )} 
+            else{
+                <div>
+                    {Cart.map((u) =>(<p>{u.nombre}</p>,<p>{u.id}</p>, <p>{u.price}</p>, <p>{u.unidades}</p>,<p>{u.precio}</p>))}
+                    <button onClick={deleteUnity}>-</button>
+                    <button onClick={deleteItem}>X</button>
+                    <p>unidades : {itemUnities}</p>
+                    <div>
+                    <button onClick={buyer}>Finalizar Compra</button>
+                    </div>
+                    <div>
+                        <p>{itemPrice}</p>
+                    </div>
+                </div>
+            }
+    }
 
     function buyer (){
 
@@ -17,18 +38,10 @@ function BodyCart (){
 
     return(
         <>
-            <div ref={itemdiv}>
-                {Cart.map(item =><p>{item.nombre}</p>,<p>{item.id}</p>, <p>{item.price}</p>, <p>{item.unidades}</p>, <p>{item.precio}</p>)}
-                <button onClick={deleteUnity}>-</button>
-                <button onClick={deleteItem}>X</button>
-                <p>unidades : {itemUnities}</p>
-            </div>
             <div>
-                <button onClick={buyer}>Finalizar Compra</button>
+                {CartBody}
             </div>
-            <div>
-                <p>{itemPrice}</p>
-            </div>
+            
         </>
     )
 }

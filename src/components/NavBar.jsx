@@ -11,10 +11,10 @@ let styleList = {
 
 }
 
-function NavBar () {
+function NavBarr () {
     return (
 
-            <div style={{textAling:"center"}}>
+            <div style={{textAling:"center", border:"solid black 2px"}}>
                 <h1>Biancaneve</h1>
                 <h2>snowsport equipment</h2>
                 <div className="shoppingCart">
@@ -39,4 +39,4 @@ function NavBar () {
 
 }
 
-export default NavBar
+export default NavBarr
