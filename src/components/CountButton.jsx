@@ -1,49 +1,58 @@
-import { useEffect, useRef, useState } from "react";
+//@ts-check
+import React from "react";
+import { useEffect,useState } from "react";
 
 
-function ItemCount  ({startPoint}) {
-    const [Qty , setQty] = useState(0);
+function ItemCount  ({qty, setQty, onAdd}) {
+    const [disableSuma, setDisableSuma] = useState (false);
+    const [disableResta, setDisableResta] = useState (false)
+
+    
     const addQty = (()=>{
 
-        setQty (Qty + 1)
+        setQty (qty + 1) 
 
-         if(Qty === 10){
-           return(
-           <button disable ={true}>+</button>
-           )     
-                   
-        }   
+        if(qty >= 9){
+            setDisableSuma(true)
+            
+        }else if(qty <= 9){
+            setDisableSuma(false)
+            setDisableResta(false)    
+        }
 
-    },[Qty])
+    })
 
     const deleteQty = (()=>{
-    
-     setQty (Qty - 1)
+
+        setQty (qty - 1)
+
+        if(qty <= 1){
+            setDisableResta(true)
             
-    if(Qty === 0){
-        return(
-           <button disable ={true}>-</button>
-        )
-               
-    }
-        
+        }else if(qty >= 1){
+            setDisableResta(false)
+            setDisableSuma(false)
+        }
 
-    },[Qty]);
+    });
 
-
-return(
-
-    <>
-        <div style={{border: 'solid black 2px', height:'200px'}}>
-            <p>Cantidad de Unidades: {Qty}</p>
-            <br/>
-            <button onClick={addQty}>+</button>
-
-            <button onClick={deleteQty}>-</button>
-
-        </div>
-    </>
-)
+    return(
+        <>
+            <div style={{border: 'solid black 2px', height:'200px'}}>
+                <p>Cantidad de Unidades: {qty}</p>
+                <br/>
+                <button disabled={disableResta} onClick={deleteQty}>-</button>
+                <button disabled={disableSuma} onClick={addQty}>+</button>
+                <div>
+                <button onClick={()=>{onAdd()}}>Agregar al Carrito</button>
+                </div>
+            </div>
+        </>
+    )
 }
 
-export default ItemCount;
+    export default ItemCount;
+
+function onAdd() {
+    throw new Error("Function not implemented.");
+}

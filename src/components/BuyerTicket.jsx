@@ -1,3 +1,4 @@
+//@ts-check
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
@@ -8,6 +9,7 @@ function Persons (){
     const [Name,setName] = useState()
     const [Phone,setPhone] = useState()
     const [Email,setEmail] = useState();
+    // @ts-ignore
     const {Cart, itemPrice} = useContext(CartContext)
 
     const db = getFirestore()
@@ -29,9 +31,15 @@ function Persons (){
 
     return(
         <>
-        <input onChange={(e)=>setName(e.target.value)} placeholder="Ingrese su Nombre"></input>
-        <input onChange={(e)=>setPhone(e.target.value)} placeholder="Ingrese su Numero de Telefono"></input>
-        <input onChange={(e)=>setEmail(e.target.value)} placeholder="Ingrese su Email"></input>
+        <input onChange={(e)=>setName(
+// @ts-ignore
+        e.target.value)} placeholder="Ingrese su Nombre"></input>
+        <input onChange={(e)=>setPhone(
+// @ts-ignore
+        e.target.value)} placeholder="Ingrese su Numero de Telefono"></input>
+        <input onChange={(e)=>setEmail(
+// @ts-ignore
+        e.target.value)} placeholder="Ingrese su Email"></input>
         <button onClick={createBuyer} ></button>
         </>
     )

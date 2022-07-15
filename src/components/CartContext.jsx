@@ -1,14 +1,16 @@
-
-import { useState } from "react";
+//@ts-check
 import { createContext } from "react";
+import { useState } from "react";
 
 
-export const CartContext = createContext();
 
-const {provider} = CartContext;
+const cart = []
 
-const CartProvider = (children)=>{
-    const[Cart, setCart]=useState([]);
+export const CartContext = createContext([])
+const {Provider} = CartContext
+
+function CartProvider ({children}){
+    const[Cart, setCart]=useState(cart);
 
     const justInIt  = (id) => {
         return Cart.some(x=> x.id == id)
@@ -20,19 +22,20 @@ const CartProvider = (children)=>{
             unidades
         }
         if (justInIt(newItem.id)){
-            const findItem = Cart.find(x => x.id == newItem.id) 
+            const findItem = Cart.find(obj => obj.id === newItem.id) 
             const itemIndex = Cart.indexOf(findItem)
             const auxArray  = [...Cart];
             auxArray [itemIndex].unidades += unidades
             setCart(auxArray)
         }
         else{
-            setCart([...Cart], newItem)
+
+            setCart([...Cart, newItem])
         }
     };
 
     const deleteUnity = (item, unidades) => {
-        const newItem = {
+       const newItem = {
             ...item,
             unidades
         }
@@ -44,7 +47,7 @@ const CartProvider = (children)=>{
             setCart(auxArray)
         }
         else{
-            setCart([...Cart], newItem)
+            setCart([...Cart, newItem])
         }
     };
    
@@ -53,8 +56,8 @@ const CartProvider = (children)=>{
         setCart([])
     };
 
-    const deleteItem = () => {
-        return Cart.filter(x => x.id !== Cart.id)
+    const deleteItem = (id) => {
+        return Cart.filter(x => x.id !== id)
     };
 
     const itemUnities = () => {
@@ -66,7 +69,8 @@ const CartProvider = (children)=>{
     };
 
      
-    return <provider value = {{Cart, justInIt, emptyCart, deleteItem, itemUnities, itemPrice, addCart, deleteUnity}} >{children}</provider>
+  
+    return <CartContext.Provider value = {{Cart,justInIt, emptyCart, deleteItem, itemUnities, itemPrice, addCart, deleteUnity}} >{children}</CartContext.Provider>
 }
 
 

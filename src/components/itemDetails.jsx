@@ -1,56 +1,70 @@
-import { collection, getDoc, getFirestore, where } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
-import { CartContext } from "./CartContext";
-import { itemCount } from "./CountButton";
+
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import ItemCount from "./CountButton";
 import "./ItemDetailContainer";
-
-
+import productos from "./products";
 
 function Details (){
-    const [Producto , setProducto] = useState()
-    const [Qty, setQty] = useState()
-    const unidades = Qty
-    const item = Producto
 
-
-    const{justInIt, addCart, deleteUnity} = useContext(CartContext)
-    justInIt(item.id);
-    addCart(item, unidades);
-    deleteUnity(item, unidades);
-    itemCount(Qty)
-
-    useEffect(()=>{
-        const db = getFirestore()
-        const query = query(
-            collection(db, "productos"),
-            where("name", "===", "campera snowboard")
-        );
-        getDoc(query).then((snapshot)=>{
-            if(snapshot === 0){
-                <p>No se encuentran productos, intente mas tarde</p>
-            }
-            setProducto=(snapshot.docs.map((doc)=>({id: doc.id, ...doc.data()})));
-        })
-    },[]);
     
+    const [qty, setQty] = useState(0)
+    const [item, setItem] = useState()
+    const [loading, setLoading]= useState(true)
+    const {id} = useParams()
+
+    const onAdd = () => {
+        alert(`cantida de producto ${qty}`)
+    } 
+    console.log(id)
+   useEffect(()=>{
+        
+            setTimeout(()=>{
+                const getElement = new Promise ((res, rej)=>{
+                    res(productos)
+                })
+
+
+                getElement.then((result)=>{
+                    setItem(productos.find((item)=>item.id == id))
+                    
+                })
+                
+                getElement.finally(()=>{
+                    setLoading(false)
+                })
+                console.log(item)
+            }, 2000)
+
+    },[id])
+
+
+
+
        
 
+
     return(
-                <>
-                    <div>
-                        <img/>
-                        <div>
-                            <h2>{Producto.nombre}</h2>
-                            <p>{Producto.data}</p>
-                        </div>
-                        <div>
-                            {itemCount((e)=>setQty(e.target.value))}
-                        </div>
-                        <div>
-                            <button onClick={addCart} >Add to Cart</button>
-                        </div>
-                    </div>        
-                </>
+      <>
+            <div>
+                <div>
+                    {loading && ("loading...")}
+                </div>
+                <div>
+                    {item && 
+                        <> 
+                        <p>hola</p>
+                        <h2>{item.nombre}</h2>
+                        <p>${item.precio}</p>
+                        <p>{item.tipo}</p>
+                                            
+                        <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} /></>}
+                                
+                </div>
+            </div>    
+        </>  
     )
 
 }
@@ -58,10 +72,26 @@ function Details (){
 
 export default Details;
 
+{/**/}
 
 
 
+   
+       {/*function showProduct (){
+            setItem(x => producto.filter(x => x.id === id))
 
-
+            return(
+                <>
+                        <div>
+                        {/* <p>hola</p>
+                            <h2>{item.nombre}</h2>
+                            <p>${item.precio}</p>
+                            <p>{item.tipo}</p>}
+                        
+                            <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} />
+                        </div>        
+                    </>
+            )
+        }*/}
 
 

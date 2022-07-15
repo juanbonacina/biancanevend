@@ -1,12 +1,17 @@
+//@ts-check
+import React from "react";
+import CataloguePromise from "./ItemDetailContainer";
+
+
 function ItemsList () {
+
     return(
             <>
-               
-                <div>
-                    <ul className="listCatal">
-                                    
-                    </ul>
-                </div>
+                
+                <h2>CATALOGO</h2>
+              
+                <CataloguePromise/>
+                
             </>
     
     
