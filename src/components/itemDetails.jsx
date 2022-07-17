@@ -1,22 +1,27 @@
 
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext,useEffect,  useState } from "react";
 import { useParams } from "react-router-dom";
+import { CartContext } from "./CartContext";
 import ItemCount from "./CountButton";
 import "./ItemDetailContainer";
 import productos from "./products";
+import { Link } from 'react-router-dom';
 
 function Details (){
 
     
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(1)
     const [item, setItem] = useState()
     const [loading, setLoading]= useState(true)
     const {id} = useParams()
 
+    const {justInIt, addCart} = useContext(CartContext)
+
     const onAdd = () => {
         alert(`cantida de producto ${qty}`)
+        justInIt(id)
+        addCart(item, qty)
     } 
     console.log(id)
    useEffect(()=>{
@@ -40,12 +45,6 @@ function Details (){
 
     },[id])
 
-
-
-
-       
-
-
     return(
       <>
             <div>
@@ -61,8 +60,10 @@ function Details (){
                         <p>{item.tipo}</p>
                                             
                         <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} /></>}
-                                
+
+                          
                 </div>
+                <button><Link to={'/Carro'}>CARRITO</Link></button>
             </div>    
         </>  
     )

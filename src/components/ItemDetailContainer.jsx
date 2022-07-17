@@ -10,6 +10,7 @@ function CataloguePromise (){
     return(
         <>
             <div>
+                <button><Link to={'/Carro'}>Carrito</Link> </button>
                 <ul>
                         {productos.map((item)=>(
 

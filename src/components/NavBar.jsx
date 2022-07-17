@@ -1,6 +1,8 @@
 //@ts-check
+import React from 'react';
 import './CartWidget.jsx';
-import ShoppingCart from './CartWidget.jsx';
+import { Link } from 'react-router-dom';
+
 
 let styleList = {
 
@@ -18,7 +20,7 @@ function NavBarr () {
                 <h1>Biancaneve</h1>
                 <h2>snowsport equipment</h2>
                 <div className="shoppingCart">
-                    <ShoppingCart/>
+
                     <div className="shoppingElements">
 
                     </div>
@@ -26,10 +28,10 @@ function NavBarr () {
                 <div>
                     <ul  className="navList">
                         <button>inicio</button>
-                        <button>catalogo</button>
+                        <button><Link to={'/ItemList'}>catalogo</Link></button>
                         <button>noticias</button>
                         <button>promociones</button>
-                        <button>carrito</button>
+                        <button><Link to={'/Carro'}>carrito</Link></button>
                     </ul>
                 </div>
 

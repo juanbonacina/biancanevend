@@ -1,17 +1,18 @@
 //@ts-check
 import React from "react";
-import BodyCart from "./CartBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function ShoppingCart (){
 
-  
+  function carritoveri(){
+    console.log("funciono")
+  }
 
 
   return(
     <> 
-      <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+      <button onClick={carritoveri}  className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Carrito</button>
 
       <div className="offcanvas offcanvas-start" data-bs-scroll="true" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div className="offcanvas-header">
