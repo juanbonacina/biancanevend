@@ -2,23 +2,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import productos from "./products";
-
+import "./Styles.css"
 
 function CataloguePromise (){
 
    
     return(
         <>
-            <div>
-                <button><Link to={'/Carro'}>Carrito</Link> </button>
-                <ul>
+            <div className='div'>
+                <ul className='ul'>
                         {productos.map((item)=>(
 
-                        <li key={item.id}>
+                        <li className='li' key={item.id}>
                             <h4>{item.nombre}</h4>
-                            <p onClick={console.log(item)}>{item.precio}</p>
-                            <button><Link to={`/ItemDetails/${item.id}`}>ver mas</Link></button>
-                            
+                            <p>U$D{item.precio}</p>
+                            <button className='links'><Link  to={`/ItemDetails/${item.id}`}>ver mas</Link></button>   
                         </li>
                         
                         ))

@@ -1,62 +1,68 @@
 
-import React from "react";
-import { useContext, useEffect, useState} from "react";
-import { CartContext } from "./CartContext";
+import React, { useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { CartContext } from "./CartContext";
 
 
 function Carro (){
-
-    const{cart, itemPrice, deleteItem}= useContext(CartContext)
-
-    function Cart (){
-        const [carro, setCarro] = useState()
-
-        useEffect(()=>{ 
-     
-            if(cart.length == 0 ){
-                        return( 
-                        
-                            <>
-                                <p>El carrito se encuentra vacio</p>
-                                <button><Link to={'/ItemList'}>Ir al Catalogo</Link></button>
-                            </>
-                        )
-                    }
+    const{cart, itemPrice}= useContext(CartContext)
+    const cartArray = cart
+    console.log(cart)
+    console.log(cartArray)
+    
+   
+    useEffect(()=>{
+        RenderDaetails()
+    },[cart])
+        
+        function RenderDaetails (){
+            
+                if(cart.length === 0 ){
+                            return( 
+                            
+                                <>
+                                <div className="divCarro">
+                                    <p>El carrito se encuentra vacio</p>
+                                    <button><Link to={'/ItemList'}>Ir al Catalogo</Link></button>
+                                </div>
+                                </>
+                            )
+                }
                    
-            if(cart != 0){
-                return( 
-                       setCarro(<>
-                            <div>
-                    
-                                <ul>
-                                    {cart.map((item)=>{
-                                        <>
-                                            <li key={item.id}>
-                                                <h4>{item.nombre}</h4>
-                                                <p>${item.precio}</p>
-                                                <p>{item.qty}</p>
-                                            </li>
-                                            <button onClick={deleteItem ()} key={item.id}>X</button>
-                                        </>
-                                    })}
-                                </ul>
-                                <p>precio total: {itemPrice()}</p>
+                 else{
+                    return( 
+                        <>
+                            <ul className="ul">
+                            {cart.map((item)=>(
+                                <li className="li">
+                                    <div key={item.id}>
+                                        <h4>{item.nombre}</h4>
+                                        <p>unidades: {item.qty}</p>
+                                        <p>U$D {item.precio}</p>        
+                                    </div>
+                                </li>
+                            ))
+                            }
+                            </ul>
+                            <div className="div">
+                                <p>precio total: U$D {itemPrice()}</p>
+                                <button><Link to={'/BuyerTicket'}>finalizar Compra</Link></button>
                             </div>
-                        </>)
+                        </>
                     )
-                    }
-        },[setCarro])
+                }
+            
+        }
                     
-    }
+    
     
     return(
-        <div>
-            {Cart()}
+        <div className="containers">
+            {RenderDaetails()}
         </div>
     )
 
-    
+   
 }
 
 export default Carro;
@@ -68,5 +74,7 @@ export default Carro;
 {/*
 const [carro, setCarro] = useState()
 useEffect(()=>{},[])
+
+ 
 
 */}

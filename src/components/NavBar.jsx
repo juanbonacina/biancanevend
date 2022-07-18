@@ -16,23 +16,16 @@ let styleList = {
 function NavBarr () {
     return (
 
-            <div style={{border:"solid black 2px"}}>
+            <div className='containers'>
                 <h1>Biancaneve</h1>
                 <h2>snowsport equipment</h2>
-                <div className="shoppingCart">
-
-                    <div className="shoppingElements">
-
-                    </div>
-                </div>
-                <div>
-                    <ul  className="navList">
-                        <button>inicio</button>
-                        <button><Link to={'/ItemList'}>catalogo</Link></button>
-                        <button>noticias</button>
-                        <button>promociones</button>
-                        <button><Link to={'/Carro'}>carrito</Link></button>
-                    </ul>
+                
+                <div className='divHeader'>
+                    
+                    <p><Link to={'/'} className='p'>Inicio</Link></p>
+                    <p><Link to={'/ItemList'} className='p'>Catalogo</Link></p>
+                    <p><Link to={'/Carro'} className='p'>Carrito</Link></p>
+                    
                 </div>
 
             </div>        

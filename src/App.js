@@ -15,8 +15,9 @@ import ItemList from './components/ItemList.jsx';
 import './components/NavBar.jsx';
 import Home from './components/Home';
 import CartProvider from './components/CartContext';
-
 import Carro from './components/Carro';
+import Persons from './components/BuyerTicket';
+import NavBarr from './components/NavBar.jsx';
 
 
 
@@ -28,6 +29,7 @@ function App() {
     <header className="App-header">
     
      <BrowserRouter>
+     <NavBarr/>
       <CartProvider>
         <Routes>
             <Route path='/' element={<Home/>}/>
@@ -35,11 +37,12 @@ function App() {
             <Route path="/CartWidget" element={<ShoppingCart/>}/>
             <Route path='/ItemDetails/:id' element={<Details/>}/>
             <Route path='/itemlist' element={<ItemList/>}/>
+            <Route path='/BuyerTicket' element={<Persons/>}/>
             <Route path='/ItemDetailContainer/:id' element ={<CataloguePromise/>} />
         </Routes>
       </CartProvider>
      </BrowserRouter>
-    {/*<ItemsList/>*/}
+  
     
     </header>
     </div>

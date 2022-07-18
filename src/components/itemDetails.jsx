@@ -21,7 +21,9 @@ function Details (){
     const onAdd = () => {
         alert(`cantida de producto ${qty}`)
         justInIt(id)
-        addCart(item, qty)
+        addCart(item, qty, id)
+        
+        console.log(item, qty, id)
     } 
     console.log(id)
    useEffect(()=>{
@@ -46,7 +48,7 @@ function Details (){
     },[id])
 
     return(
-      <>
+        <>
             <div>
                 <div>
                     {loading && ("loading...")}
@@ -54,16 +56,21 @@ function Details (){
                 <div>
                     {item && 
                         <> 
-                        <p>hola</p>
-                        <h2>{item.nombre}</h2>
-                        <p>${item.precio}</p>
-                        <p>{item.tipo}</p>
-                                            
-                        <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} /></>}
+                        <article className="div">
+                            <h2>{item.nombre}</h2>
+                            <p>U$D{item.precio}</p>
+                            <p>{item.tipo}</p>
+                            <p>{item.descripcion}</p>
+                        </article> 
+                        <aside>                 
+                            <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} />
+                        </aside>
+                        </>
+                    }
 
                           
                 </div>
-                <button><Link to={'/Carro'}>CARRITO</Link></button>
+               
             </div>    
         </>  
     )
@@ -74,25 +81,3 @@ function Details (){
 export default Details;
 
 {/**/}
-
-
-
-   
-       {/*function showProduct (){
-            setItem(x => producto.filter(x => x.id === id))
-
-            return(
-                <>
-                        <div>
-                        {/* <p>hola</p>
-                            <h2>{item.nombre}</h2>
-                            <p>${item.precio}</p>
-                            <p>{item.tipo}</p>}
-                        
-                            <ItemCount qty={qty} setQty={setQty} onAdd={onAdd} />
-                        </div>        
-                    </>
-            )
-        }*/}
-
-

@@ -38,11 +38,13 @@ function ItemCount  ({qty, setQty, onAdd}) {
 
     return(
         <>
-            <div style={{border: 'solid black 2px', height:'200px'}}>
+            <div className="containers">
                 <p>Cantidad de Unidades: {qty}</p>
                 <br/>
-                <button disabled={disableResta} onClick={deleteQty}>-</button>
-                <button disabled={disableSuma} onClick={addQty}>+</button>
+                <div>
+                    <button disabled={disableResta} onClick={deleteQty}>-</button>
+                    <button disabled={disableSuma} onClick={addQty}>+</button>
+                </div>
                 <div>
                 <button onClick={()=>{onAdd()}}>Agregar al Carrito</button>
                 </div>

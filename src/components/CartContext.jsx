@@ -17,6 +17,7 @@ const CartProvider = ({children})=>{
     }
 
     const addCart = (item, qty) => {
+        
         const newItem = {
             ...item,
             qty
