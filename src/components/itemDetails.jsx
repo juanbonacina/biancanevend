@@ -1,12 +1,10 @@
 
-import React from "react";
-import { useContext,useEffect,  useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import ItemCount from "./CountButton";
 import "./ItemDetailContainer";
-import productos from "./products";
-import { Link } from 'react-router-dom';
+import productos from "./Products";
 
 function Details (){
 

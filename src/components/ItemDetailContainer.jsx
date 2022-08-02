@@ -1,7 +1,7 @@
 //ts-check
 import React from 'react';
 import { Link } from 'react-router-dom';
-import productos from "./products";
+import productos from "./Products";
 import "./Styles.css"
 
 function CataloguePromise (){
