@@ -12,18 +12,19 @@ function Persons (){
     
     const {cart, itemPrice, emptyCart} = useContext(CartContext)
 
-    
+  
 
-    function createBuyer(){
-        const order = {
-        buyer:{Name, Phone, Email},
-        items: {cart},
-        total : {itemPrice},
-        };
-        console.log(order)
-        
-        const finalOrder = alert(`muchas gracias por su compra ${order.buyer.Name}`)
-    }
+        function createBuyer(){
+            const order = {
+            buyer:{Name, Phone, Email},
+            items: {cart},
+            total : {itemPrice},
+            };
+            console.log(order)
+            
+            const finalOrder = alert(`muchas gracias por su compra ${order.buyer.Name}, el total de su compra es de U$D ${itemPrice()}`)
+        }
+    
 
     return(
         <>

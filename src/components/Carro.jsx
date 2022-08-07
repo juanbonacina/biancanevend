@@ -2,10 +2,11 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { CartContext } from "./CartContext";
+import ItemCount from "./CountButton";
 
 
 function Carro (){
-    const{cart, itemPrice}= useContext(CartContext)
+    const{cart, itemPrice, itemUnities, deleteItem}= useContext(CartContext)
     const cartArray = cart
     console.log(cart)
     console.log(cartArray)
@@ -34,18 +35,20 @@ function Carro (){
                         <>
                             <ul className="ul">
                             {cart.map((item)=>(
-                                <li className="li">
-                                    <div key={item.id}>
+                                <li className="li" key={item.id}>
+                                    <div >
                                         <h4>{item.nombre}</h4>
                                         <p>unidades: {item.qty}</p>
                                         <p>U$D {item.precio}</p>        
                                     </div>
+                                    <span onClick={()=>deleteItem(item.id)}>🗑️</span>
                                 </li>
                             ))
                             }
                             </ul>
                             <div className="div">
                                 <p>precio total: U$D {itemPrice()}</p>
+                                <p>cantidad total de unidades: {itemUnities()}</p>
                                 <button><Link to={'/BuyerTicket'}>finalizar Compra</Link></button>
                             </div>
                         </>

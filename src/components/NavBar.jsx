@@ -24,7 +24,7 @@ function NavBarr () {
                     
                     <p><Link to={'/'} className='p'>Inicio</Link></p>
                     <p><Link to={'/ItemList'} className='p'>Catalogo</Link></p>
-                    <p><Link to={'/Carro'} className='p'>Carrito</Link></p>
+                    
                     
                 </div>
 
